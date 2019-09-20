@@ -7,10 +7,13 @@ import Api from '../api';
 
 export default class ListaLembretes extends Component {
     
-    state = Json;
-    // componentDidMount() {
-    //     Api.fetcher();
-    // }
+    state = {
+        pessoas: []
+    }
+
+    componentDidMount() {
+        this.setState(Json);
+    }
     onDelete(id) {
         Alert.alert(
             'Exclusão de lembrete',

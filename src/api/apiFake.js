@@ -1,6 +1,6 @@
 import pessoa from '../../json/pessoas.json';
 import React from 'react';
-import {Alert, Text} from 'react-native';
+import {Alert} from 'react-native';
 
 export default function adicionar(valor){
     let dados = JSON.stringify(valor);
@@ -8,7 +8,7 @@ export default function adicionar(valor){
         console.log(dados)
         
     }
-    
+
 let formatada = `Nome: ${valor.nome}
 CPF: ${valor.cpf}
 Telefone: ${valor.telefone}
@@ -30,5 +30,7 @@ CEP: ${valor.cep}`;
             {cancelable: false},
           )
      );
+
+     return 
 }
 
