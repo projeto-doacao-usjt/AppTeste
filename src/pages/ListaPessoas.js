@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import { StyleSheet, Text, View, TouchableOpacity, Alert, ScrollView, StatusBar } 
 from 'react-native';
-import Json from '../../json/pessoas.json';
-
-import Api from '../api';
+//import Json from '../../json/pessoas.json';
+//import Api from '../api'
 
 export default class ListaLembretes extends Component {
     
@@ -12,7 +12,11 @@ export default class ListaLembretes extends Component {
     }
 
     componentDidMount() {
-        this.setState(Json);
+        // const p = Api()
+        // console.log(p)
+
+        axios.get('http://teste-adocaoanimais.herokuapp.com/pessoas')
+        .then(pes => pes.data).then(pessoas => this.setState({pessoas})).catch(error => console.log(error))
     }
     onDelete(id) {
         Alert.alert(
@@ -52,7 +56,9 @@ export default class ListaLembretes extends Component {
                     {pessoas.map((p, key) => (
                         <View style={styles.styleKey} key={key}>
                         <Text style={styles.textoLembrete}>Nome: {p.nome}</Text>
-                        <Text style={styles.textoLembrete}>Endereço: {p.endereco}</Text>
+                        <Text style={styles.textoLembrete}>Endereço: {p.endereco} </Text>
+                        <Text style={styles.textoLembrete}>Nº:  {p.numero} </Text>
+                        <Text style={styles.textoLembrete}>Complemento: {p.complemento}</Text>
                         <Text style={styles.textoLembrete}>CEP: {p.cep}</Text>
                         <Text style={styles.textoLembrete}>Telefone: {p.tel}</Text>
                         <Text style={styles.textoLembrete}>CPF: {p.cpf}</Text>

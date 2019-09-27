@@ -6,6 +6,7 @@ export default class FormPessoa extends Component {
         nome: '',
         endereco: '',
         complemento: '',
+        numero: '',
         cep: '',
         tel: '',
         cpf: '',
@@ -70,6 +71,17 @@ export default class FormPessoa extends Component {
                             value={this.state.complemento}
                             onChangeText={complemento => this.setState({ complemento })}
                         />
+                    </View>
+
+                    <View style={styles.conteudo}>
+                        <TextInput
+                            style={styles.input}
+                            placeholder='Número:'
+                            placeholderTextColor='#000'
+                            value={this.state.numero}
+                            onChangeText={nome => this.setState({ numero })}
+                        />
+
                     </View>
 
                     <View style={styles.conteudo}>

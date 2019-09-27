@@ -1,10 +1,6 @@
+import axios from 'axios'
 export default function Api (){
-    async function listaPessoas(){
-        await fetch('http://localhost:3003', { method: 'GET' } )
-        .then(T => T.json())
-        .then(lembretes => this.setState({ lembretes }))
-    }
-    function adicionaPessoa(){
-        
-    }
+        axios.get('http://teste-adocaoanimais.herokuapp.com/pessoas')
+        .then(t => t.data).catch(error => console.log(error))
 }
+//http://teste-adocaoanimais.herokuapp.com/pessoas

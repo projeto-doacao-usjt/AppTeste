@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { NativeRouter, Switch, Route } from 'react-router-native'
-
 import AdicionarPessoa from './pages/AdicionarPessoa'
 import ListaPessoas from './pages/ListaPessoas'
 

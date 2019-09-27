@@ -11,9 +11,10 @@ export default function adicionar(valor){
 
 let formatada = `Nome: ${valor.nome}
 CPF: ${valor.cpf}
-Telefone: ${valor.telefone}
+Telefone: ${valor.tel}
 Endereco: ${valor.endereco}
-CEP: ${valor.cep}`;
+CEP: ${valor.cep}
+Número: ${valor.numero}`;
 
      return (
         Alert.alert(
