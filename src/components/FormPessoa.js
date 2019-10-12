@@ -79,7 +79,7 @@ export default class FormPessoa extends Component {
                             placeholder='Número:'
                             placeholderTextColor='#000'
                             value={this.state.numero}
-                            onChangeText={nome => this.setState({ numero })}
+                            onChangeText={numero => this.setState({ numero })}
                         />
 
                     </View>

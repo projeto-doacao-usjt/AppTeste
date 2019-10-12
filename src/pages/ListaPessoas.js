@@ -5,7 +5,7 @@ from 'react-native';
 //import Json from '../../json/pessoas.json';
 //import Api from '../api'
 
-export default class ListaLembretes extends Component {
+export default class ListaPessoas extends Component {
     
     state = {
         pessoas: []
@@ -16,19 +16,21 @@ export default class ListaLembretes extends Component {
         // console.log(p)
 
         axios.get('http://teste-adocaoanimais.herokuapp.com/pessoas')
-        .then(pes => pes.data).then(pessoas => this.setState({pessoas})).catch(error => console.log(error))
+        .then(pes => pes.data).then(pessoas => this.setState({pessoas}))
+        .catch(error => console.log(error))
     }
     onDelete(id) {
         Alert.alert(
-            'Exclusão de lembrete',
+            'Exclusão de pessoas',
             'Você confirma a exclusão desta pessoa?', [
                 { text: 'Não', style: 'cancel' },
                 {
                     text: 'Sim',
                     onPress: () => {
-                        this.setState({
-                                pessoas: this.state.pessoas.filter(T => T.id !== id)
-                            })
+                        axios.delete(`http://teste-adocaoanimais.herokuapp.com/pessoas/${id}`).then(this.setState({
+                            pessoas: this.state.pessoas.filter(T => T.id !== id)
+                        }))
+                        
                     }
                 }
             ])
@@ -63,11 +65,11 @@ export default class ListaLembretes extends Component {
                         <Text style={styles.textoLembrete}>Telefone: {p.tel}</Text>
                         <Text style={styles.textoLembrete}>CPF: {p.cpf}</Text>
                         <View style={styles.botoes}>     
-                            <TouchableOpacity 
+                            {/* <TouchableOpacity 
                             style={styles.botao}
                             onPress={() => this.props.history.push('/' + p.id)}> 
                                 <Text style={styles.textoBotoes}>Editar</Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                             <TouchableOpacity
                             style={styles.botao}
                             onPress={() => this.onDelete(p.id)}>
