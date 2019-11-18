@@ -12,6 +12,7 @@
     "fs": "0.0.1-security",
     "react": "16.8.6",
     "react-native": "0.60.5",
+    "react-native-image-picker": "^1.1.0",
     "react-router-native": "^5.0.1"
   },
   "devDependencies": {

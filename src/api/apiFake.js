@@ -5,7 +5,7 @@ import {Alert} from 'react-native';
 
 export default function adicionar(valor){
     let dados = JSON.stringify(valor);
-      axios.post('http://teste-adocaoanimais.herokuapp.com/books', { dados}).then(t => t.JSON)
+      axios.post('http://teste-postgresql.herokuapp.com/add/pessoa', { dados}).then(t => t.JSON)
         .then(console.log(dados)).catch(error => console.log(error))
 
 // let formatada = `Nome: ${valor.nome}

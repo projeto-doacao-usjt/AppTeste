@@ -5,75 +5,68 @@ from 'react-native';
 //import Json from '../../json/pessoas.json';
 //import Api from '../api'
 
-export default class ListaPessoas extends Component {
+export default class ListaAnimais extends Component {
     
     state = {
-        pessoas: []
+        animais: [{
+            tipo: 'Cachorro',
+            raca: 'Basset'
+        }]
     }
 
     componentDidMount() {
         // const p = Api()
         // console.log(p)
 
-        axios.get('http://teste-postgresql.herokuapp.com/pessoa/get/pessoas')
-        .then(pes => pes.data).then(pessoas => this.setState({pessoas}))
-        .catch(error => console.log(error))
+        // axios.get('http://teste-adocaoanimais.herokuapp.com/animais')
+        // .then(ani => ani.data).then(animais => this.setState({animais}))
+        // .catch(error => console.log(error))
     }
-    onDelete(id) {
-        Alert.alert(
-            'Exclusão de pessoas',
-            'Você confirma a exclusão desta pessoa?', [
-                { text: 'Não', style: 'cancel' },
-                {
-                    text: 'Sim',
-                    onPress: () => {
-                        axios.delete(`http://teste-postgresql.herokuapp.com/pessoa/deletar/pessoa/id/${id}`).then(this.setState({
-                            pessoas: this.state.pessoas.filter(T => T.id !== id)
-                        }))
+    // onDelete(id) {
+    //     Alert.alert(
+    //         'Exclusão de pessoas',
+    //         'Você confirma a exclusão desta pessoa?', [
+    //             { text: 'Não', style: 'cancel' },
+    //             {
+    //                 text: 'Sim',
+    //                 onPress: () => {
+    //                     axios.delete(`http://teste-adocaoanimais.herokuapp.com/pessoas/${id}`).then(this.setState({
+    //                         pessoas: this.state.pessoas.filter(T => T.id !== id)
+    //                     }))
                         
-                    }
-                }
-            ])
-    }
+    //                 }
+    //             }
+    //         ])
+    // }
     render() {
 
-        const { pessoas } = this.state;
-        console.log(pessoas)
+        const { animais } = this.state;
+        console.log(animais)
 
         return (
 
             <View  style={styles.container}>
                 <StatusBar backgroundColor='#000' /> 
                 <ScrollView>
-                    <Text style={styles.textoBranco}>Pessoas Cadastradas</Text>
+                    <Text style={styles.textoBranco}>Animais Cadastrados</Text>
                     <View style={styles.botoes}>
                     <TouchableOpacity style={styles.adicionar}  
-                    onPress={() => this.props.history.push('/adicionar')}>
-                        <Text style={styles.textoBotoes}>Adicionar</Text>
+                    onPress={() => this.props.history.push('/cadastroanimal')}>
+                        <Text style={styles.textoBotoes}>Cadastrar Animal</Text>
                     </TouchableOpacity>
                     </View>
 
                     <View style={styles.styleScroll}>
 
-                    {pessoas.map((p, key) => (
+                    {animais.map((p, key) => (
                         <View style={styles.styleKey} key={key}>
-                        <Text style={styles.textoLembrete}>Nome: {p.nome}</Text>
-                        <Text style={styles.textoLembrete}>Endereço: {p.endereco} </Text>
-                        <Text style={styles.textoLembrete}>Nº:  {p.numero} </Text>
-                        <Text style={styles.textoLembrete}>Complemento: {p.complemento}</Text>
-                        <Text style={styles.textoLembrete}>CEP: {p.cep}</Text>
-                        <Text style={styles.textoLembrete}>Telefone: {p.tel}</Text>
-                        <Text style={styles.textoLembrete}>CPF: {p.cpf}</Text>
+                        <Text style={styles.textoLembrete}>Animal: {p.tipo}</Text>
+                        <Text style={styles.textoLembrete}>Raça: {p.raca} </Text>
                         <View style={styles.botoes}>     
                             <TouchableOpacity 
                             style={styles.botao}
                             onPress={() => this.props.history.push('/' + p.id)}> 
-                                <Text style={styles.textoBotoes}>Editar</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                            style={styles.botao}
-                            onPress={() => this.onDelete(p.id)}>
-                            <Text style={styles.textoBotoes}> Excluir</Text>
+                                <Text style={styles.textoBotoes}>Mais Detalhes</Text>
                             </TouchableOpacity>
                         </View>  
                     </View> 

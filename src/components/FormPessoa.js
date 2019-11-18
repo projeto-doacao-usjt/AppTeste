@@ -1,16 +1,34 @@
 import React, { Component } from 'react'
-import { Text, View, TextInput, StyleSheet, Button } from 'react-native'
+import { 
+    View, 
+    TextInput, 
+    StyleSheet, 
+    Button, 
+    ScrollView, 
+    ImageBackground, 
+    Text,
+    TouchableOpacity
+} from 'react-native'
+import ban from '../images/banner.png'
 
 export default class FormPessoa extends Component {
-    state = this.props.value || {
-        nome: '',
-        endereco: '',
-        complemento: '',
-        numero: '',
-        cep: '',
-        tel: '',
-        cpf: '',
+
+    constructor(){
+        super();
+        this.state =  {
+            nome: '',
+            cpf: '',
+            tel: '',
+            cep:'',
+            uf: '',
+            endereco: '',
+            complemento:'',
+            numero:'',
+            bairro: '',
+            cidade: '',
+        }
     }
+    
 
     componentDidUpdate(prevProps, prevState) {
         if (this.props.isVisible !== prevProps.isVisible) {
@@ -19,14 +37,17 @@ export default class FormPessoa extends Component {
       }
     render() {
         return (
-            <View style={styles.container}>
-
-                <View>
+            <View >
+                <ScrollView style = {styles.scroll}>
+                    <View style={styles.container}>
+                    <View style={styles.viewBanner}>
+                        <ImageBackground source={ban} style={styles.banner} />
+                    </View>
                     <View style={styles.conteudo}>
                         <TextInput
                             style={styles.input}
-                            placeholder='Nome:'
-                            placeholderTextColor='#000'
+                            placeholder='Digite o nome completo'
+                            placeholderTextColor='#666666'
                             value={this.state.nome}
                             onChangeText={nome => this.setState({ nome })}
                         />
@@ -35,72 +56,136 @@ export default class FormPessoa extends Component {
                     <View style={styles.conteudo}>
                         <TextInput
                             style={styles.input}
-                            placeholder='CPF:'
-                            placeholderTextColor='#000'
-                            value={this.state.cpf}
-                            onChangeText={cpf => this.setState({ cpf })}
+                            placeholder='Digite o email'
+                            placeholderTextColor='#666666'
+                            value={this.state.email}
+                            onChangeText={email => this.setState({ email })}
+                        />
+                    </View>
+                    <View style={styles.conteudo}>
+                        <TextInput
+                            style={styles.input}
+                            placeholder='Confirmar email'
+                            placeholderTextColor='#666666'
+                            value={this.state.email}
+                            onChangeText={email => this.setState({ email })}
+                        />
+                    </View>
+                    <View style={styles.conteudo}>
+                        <TextInput
+                            style={styles.input}
+                            placeholder='Telefone com DDD'
+                            placeholderTextColor='#666666'
+                            value={this.state.tel}
+                            onChangeText={tel => this.setState({ tel })}
+                        />
+                    </View>
+                    <View style={styles.viewCep}>
+                        <TextInput
+                            style={styles.inputCep}
+                            placeholder='CEP'
+                            placeholderTextColor='#666666'
+                            value={this.state.cep}
+                            onChangeText={cep => this.setState({ cep })}
+                        />
+                        <TouchableOpacity style={styles.botaoCep}>
+                            <Text style={styles.textoBotao}>Buscar</Text>
+                        </TouchableOpacity>
+                        <TextInput
+                            style={styles.inputUf}
+                            placeholder='UF'
+                            placeholderTextColor='#666666'
+                            value={this.state.uf}
+                            onChangeText={uf => this.setState({ uf })}
+                        />
+                    </View>
+                    <View style={styles.conteudo}>
+                        <TextInput
+                            style={styles.input}
+                            placeholder='Endereço'
+                            placeholderTextColor='#666666'
+                            value={this.state.endereco}
+                            onChangeText={endereco => this.setState({ endereco })}
+                            secureTextEntry
+                        />
+                    </View>
+                    <View style={styles.conteudo}>
+                        <TextInput
+                            style={styles.inputBairro}
+                            placeholder='Complemento'
+                            placeholderTextColor='#666666'
+                            value={this.state.complemento}
+                            onChangeText={complemento => this.setState({ complemento })}
+                            secureTextEntry
+                        />
+                        <TextInput
+                            style={styles.inputCidade}
+                            placeholder='Número'
+                            placeholderTextColor='#666666'
+                            value={this.state.numero}
+                            onChangeText={numero => this.setState({ numero })}
+                            secureTextEntry
+                        />
+
+                    </View>
+                    <View style={styles.conteudo}>
+                        <TextInput
+                            style={styles.inputBairro}
+                            placeholder='Bairro'
+                            placeholderTextColor='#666666'
+                            value={this.state.bairro}
+                            onChangeText={bairro => this.setState({ bairro })}
+                            secureTextEntry
+                        />
+                        <TextInput
+                            style={styles.inputCidade}
+                            placeholder='Cidade'
+                            placeholderTextColor='#666666'
+                            value={this.state.cidade}
+                            onChangeText={cidade => this.setState({ cidade })}
+                            secureTextEntry
                         />
 
                     </View>
                     <View style={styles.conteudo}>
                         <TextInput
                             style={styles.input}
-                            placeholder='Telefone:'
-                            placeholderTextColor='#000'
+                            placeholder='Cadastro de senha'
+                            placeholderTextColor='#666666'
+                            value={this.state.senha}
+                            onChangeText={senha => this.setState({ senha })}
+                            secureTextEntry
+                        />
+
+                    </View>
+                    <View style={styles.conteudo}>
+                        <TextInput
+                            style={styles.input}
+                            placeholder='Confirme sua senha'
+                            placeholderTextColor='#666666'
                             value={this.state.tel}
                             onChangeText={tel => this.setState({ tel })}
                         />
 
                     </View>
-                    <View style={styles.conteudo}>
-                        <TextInput
-                            style={styles.input}
-                            placeholder='Endereço:'
-                            placeholderTextColor='#000'
-                            value={this.state.endereco}
-                            onChangeText={endereco => this.setState({ endereco })}
-                        />
+                     
+                    
 
+                    <View style={styles.viewBotao}>
+                        <TouchableOpacity  
+                            style={styles.botao}
+                            onPress={() =>this.props.onCancel()}>
+                            <Text style={styles.textoBotao}>Cancelar</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity  
+                            style={styles.botao}
+                            onPress={() => this.props.onSave(this.state)}>
+                            <Text style={styles.textoBotao}>Cadastrar</Text>
+                        </TouchableOpacity>
                     </View>
-
-                    <View style={styles.conteudo}>
-                        <TextInput
-                            style={styles.input}
-                            placeholder='Complemento:'
-                            placeholderTextColor='#000'
-                            value={this.state.complemento}
-                            onChangeText={complemento => this.setState({ complemento })}
-                        />
                     </View>
-
-                    <View style={styles.conteudo}>
-                        <TextInput
-                            style={styles.input}
-                            placeholder='Número:'
-                            placeholderTextColor='#000'
-                            value={this.state.numero}
-                            onChangeText={numero => this.setState({ numero })}
-                        />
-
-                    </View>
-
-                    <View style={styles.conteudo}>
-                        <TextInput
-                            style={styles.input}
-                            placeholder='CEP'
-                            placeholderTextColor='#000'
-                            value={this.state.cep}
-                            onChangeText={cep => this.setState({ cep })}
-                        />
-
-                    </View>  
-                </View>
-
-                <View>
-                    <Button title='Salvar' disabled={this.state.nome === ''}
-                    onPress={() => this.props.onSave(this.state)}/>
-                    <Button title='Cancelar' onPress={this.props.onCancel} />
-                </View>
+                </ScrollView>
 
             </View>
         )
@@ -110,22 +195,38 @@ export default class FormPessoa extends Component {
 
 const styles = StyleSheet.create({
     container: {
-
-        backgroundColor: '#fff',
         justifyContent: 'center',
-        padding: 20,
         alignItems: 'center',
-        justifyContent: 'center',
+    },
+    viewBanner:{
+        alignContent: 'center', 
+        alignItems: 'center',
+        width: 130, 
+        height: 130,
+       
+    },
+    banner:{
+        width: '100%',
+        height: '100%',
+        alignContent: 'center'
+    },
+    scroll:{
+    },
+    textCabecalho:{
+        fontSize: 18,
+        fontWeight: 'bold',
+        paddingVertical:'2%'
     },
     input:{
-        borderColor: '#000',
-        borderWidth: 1,
-        borderRadius: 5, 
-        width: '100%'
+        borderBottomWidth:1 ,
+        borderBottomColor: '#666666',
+        width: '80%',
     },
     conteudo:{
+        marginBottom: 20,
+        width: '100%',
         flexDirection: 'row',
-        paddingBottom: 20
+        justifyContent: 'center'
        
     }, texto:{
         paddingBottom: 10,
@@ -135,10 +236,64 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 10
     },
-    picker:{
-        borderWidth: 1,
-        borderColor: '#000',
-        borderRadius: 5,
-    }
+    viewCep:{
+        width: '80%',
+        flexDirection: 'row',
+    },
+    inputCep:{
+        width: '40%',
+        height: '80%',
+        borderBottomWidth:1 ,
+        borderBottomColor: '#666666',
+    },
+    inputUf:{
+        width: '15%',
+        borderBottomWidth:1 ,
+        borderBottomColor: '#666666',
+        height: '80%',
+    },
+    inputBairro:{
+        width: '45%',
+        borderBottomWidth:1 ,
+        borderBottomColor: '#666666',
+        height: '80%',
+        //marginLeft:'10%',
+        
+        
+    },
+    inputCidade:{
+        marginLeft:'5%',
+        width: '25%',
+        borderBottomWidth:1 ,
+        borderBottomColor: '#666666',
+        height: '80%'
+    },
+    botaoCep:{
+        width: '25%',
+        height: '80%',
+        backgroundColor: '#6624FB',
+        borderRadius: 4,
+        textAlign: 'center',
+        alignItems: 'center',
+        marginHorizontal:'10%'
+    },
+    viewBotao:{
+        flexDirection: 'row',
+        height: 50,
+    },
+    botao:{
+        backgroundColor: '#6624FB',
+        width: '30%',
+        height: '80%',
+        borderRadius: 3,
+        marginLeft: '3%',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    
+    textoBotao:{
+        fontSize: 20,
+        color: '#FFF',
+    },
 })
 
