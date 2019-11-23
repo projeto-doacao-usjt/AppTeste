@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, ScrollView, ImageBackground, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
-import ban from '../images/banner.png'
+import ban from '../../images/banner.png'
 
 export default class Ajuda extends Component {
     constructor(){
@@ -8,6 +8,10 @@ export default class Ajuda extends Component {
         this.state =  {
             email: ''
         }
+    }
+    onConfirma(dados) {
+        console.log(dados)
+        this.props.history.push('/confirmar')
     }
     render() {
         return (
@@ -25,7 +29,7 @@ export default class Ajuda extends Component {
                         <View style={styles.viewBotao}>
                             <TouchableOpacity  
                                 style={styles.botao}
-                                onPress={() =>this.props.onCancel()}>
+                                onPress={() => this.onConfirma('aaa')}>
                                 <Text style={styles.textBotao}>Confirme</Text>
                             </TouchableOpacity>
                         </View>

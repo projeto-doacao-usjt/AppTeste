@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
-import { Text, View, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
-import ban from '../images/banner.png';
+import { 
+    Text, 
+    View, 
+    ImageBackground, 
+    StyleSheet, 
+    TouchableOpacity, 
+} from 'react-native';
+import ban from '../../images/banner.png';
+import donate from '../../images/donate.png';
+import animais from '../../images/animais.png';
+import perdido from '../../images/perdido.png'
 
 export default class Inicio extends Component {
     render() {
@@ -10,7 +19,10 @@ export default class Inicio extends Component {
                     <ImageBackground source={ban} style={styles.banner} />
                 </View>
                 <View style={styles.conteudo}>
-                    <View style={{backgroundColor: 'blue', width: 75, height: 75 }}></View>
+                    <View style={styles.viewLogo}>
+                    <ImageBackground source={animais} resizeMode='contain' 
+                        resizeMethod='resize' style={styles.logo} />
+                    </View>
                     <TouchableOpacity 
                         style={styles.botao}
                         onPress={() =>this.props.history.push('/login')}>
@@ -18,13 +30,20 @@ export default class Inicio extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.conteudo}>
-                    <View style={{backgroundColor: 'blue', width: 75, height: 75 }}></View>
-                    <TouchableOpacity style={styles.botao}>
+                    <View style={styles.viewLogo}>
+                        <ImageBackground source={perdido} resizeMode='contain' 
+                            resizeMethod='resize' style={styles.logo} />
+                    </View>
+                    <TouchableOpacity style={styles.botao}
+                    onPress={() =>this.props.history.push('/animais')}>
                         <Text style={styles.textoBotao}> Buscar Animal Perdido</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.conteudo}>
-                    <View style={{backgroundColor: 'blue', width: 75, height: 75 }}></View>
+                    <View style={styles.viewLogo}>
+                        <ImageBackground source={donate} resizeMode='contain' 
+                        resizeMethod='resize' style={styles.logo} />
+                    </View>
                     <TouchableOpacity style={styles.botao}>
                         <Text style={styles.textoBotao}> Nos Ajude</Text>
                     </TouchableOpacity>
@@ -56,6 +75,14 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         marginTop: '10%',
+    },
+    logo:{
+        width: '100%',
+        height:'100%',
+    },
+    viewLogo:{
+        width: 100, 
+        height: 100,
     },
     botao:{
         backgroundColor: '#6624FB',
